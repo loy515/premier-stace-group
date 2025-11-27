@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Stace Group - Tracking #{{ shipment.ShipmentID }}</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #f4f7f6; }
+        #map { height: 400px; width: 100%; margin-top: 1rem; border-radius: 8px; }
+        .info-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .info-card-header { padding: 1rem 1.5rem; background-color: #f9fafb; border-bottom: 1px solid #e5e7eb; }
+        .info-card-header h3 { margin: 0; font-size: 1.25rem; color: #111827; }
+        .info-card-content { padding: 1.5rem; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; }
+        .info-grid-item strong { display: block; color: #6b7280; font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .info-grid-item span { font-size: 1.1rem; font-weight: 500; color: #1f2937; }
+        .status-hold { color: #ca8a04; }
+        .address-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 1rem; margin-top: 1rem; }
+        .address-box { background: #f8f9fa; padding: 1rem; border-radius: 6px; border-left: 4px solid #3b82f6; }
+        .address-box label { display: block; font-size: 0.8rem; color: #6b7280; font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; }
+        .address-box div { font-size: 1.1rem; color: #1f2937; font-weight: 500; }
+        .verification-badge { margin-top: 1.5rem; padding: 0.75rem; background: #ecfdf5; border-radius: 6px; display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid #d1fae5; }
+        @media (max-width: 768px) { .address-grid { grid-template-columns: 1fr; } .info-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header style="background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 2rem; text-align: center;">
+        <h1 style="margin:0; font-size: 2.5rem;">🌐 Premier Stace Group</h1>
+        <p><a href="/" style="color:white;">Track Another Shipment</a></p>
+    </header>
+
+    <main>
+        <!-- Professional Shipment Status Card -->
+        <div class="info-card">
+            <div class="info-card-header"><h3>📦 Shipment Status</h3></div>
+            <div class="info-card-content">
+                <div class="info-grid">
+                    <div class="info-grid-item"><strong>Current Status:</strong><span class="status-hold">{{ shipment.Status }}</span></div>
+                    <div class="info-grid-item"><strong>Current Location:</strong><span>{{ shipment.CurrentLocation_City }}</span></div>
+                    <div class="info-grid-item"><strong>Estimated Delivery:</strong><span>{{ shipment.ETD }}</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live Map -->
+        <div class="info-card">
+            <div class="info-card-header"><h3>📍 Live Map</h3></div>
+            <div class="info-card-content"><div id="map"></div></div>
+        </div>
+
+        <!-- NEW Professional Shipment & Address Details Card -->
+        <div class="info-card">
+            <div class="info-card-header"><h3>📋 Shipment & Address Details</h3></div>
+            <div class="info-card-content">
+                <div class="info-grid" style="margin-bottom: 2rem;">
+                    <div class="info-grid-item"><strong>Sender Name:</strong><span>{{ shipment.Sender }}</span></div>
+                    <div class="info-grid-item"><strong>Recipient Name:</strong><span>{{ shipment.Recipient }}</span></div>
+                </div>
+                <h4 style="margin-top: 0; margin-bottom: 1rem;">Destination Address</h4>
+                <div class="address-box" style="margin-bottom: 1rem;"><label>Street Address</label><div>221 East MAGNOLIA AVE</div></div>
+                <div class="address-grid">
+                    <div class="address-box"><label>City</label><div>Galloway</div></div>
+                    <div class="address-box"><label>State</label><div>NJ</div></div>
+                    <div class="address-box"><label>ZIP Code</label><div>08205</div></div>
+                </div>
+                <div class="verification-badge">
+                    <span style="font-size: 1.2rem; color: #059669;">✓</span>
+                    <span style="color: #047857; font-weight: 600;">Address Verified</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location History -->
+        <div class="info-card">
+            <div class="info-card-header"><h3>🗺️ Location History</h3></div>
+            <div class="info-card-content">
+                {% for entry in shipment.LocationHistory %}<div class="log-entry"><p><strong>{{ entry.Timestamp }} - {{ entry.Location_Name }}</strong></p><small>Status: {{ entry.Status }} | Updated by: {{ entry.Updated_By }}</small></div>{% else %}<p>No location history found.</p>{% endfor %}
+            </div>
+        </div>
+    </main>
+
+    <script>window.SHIPMENT_DATA = {{ shipment_json|safe }};</script>
+    <script src="/static/script.js?v=9.0"></script> <!-- The Final Cache Buster -->
+    <script async src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initApp"></script>
+</body>
+</html>

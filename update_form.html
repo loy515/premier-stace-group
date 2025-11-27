@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Internal Location Update</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <header><h1>Internal: Update Shipment Location</h1></header>
+    <main>
+        <!-- This form doesn't work yet, we will enable it in the next step -->
+        <form action="/update" method="post">
+            <p>
+                <label for="shipment_id">Shipment ID</label>
+                <input type="text" id="shipment_id" name="shipment_id" required>
+            </p>
+            <p>
+                <label for="new_city">New City Name</label>
+                <input type="text" id="new_city" name="new_city" required>
+            </p>
+            <p>
+                <label for="new_lat">New Latitude</label>
+                <input type="text" id="new_lat" name="new_lat" required>
+            </p>
+            <p>
+                <label for="new_lon">New Longitude</label>
+                <input type="text" id="new_lon" name="new_lon" required>
+            </p>
+            <button type="submit">Update Location</button>
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premier Stace Group -  Global Asset Tracking</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; background-color: #f4f7f6; }
+        .hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; padding: 4rem 2rem; text-align: center; }
+        .logo { font-size: 3rem; margin-bottom: 1rem; }
+        .hero h1 { margin: 0; font-size: 2.5rem; font-weight: 700; }
+        .hero p { font-size: 1.2rem; opacity: 0.95; margin: 1rem 0; }
+        .tracking-section { max-width: 600px; margin: -2rem auto 3rem auto; padding: 2rem; background: white; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); position: relative; z-index: 10; }
+        .tracking-input { width: 100%; padding: 1rem; font-size: 1.1rem; border: 2px solid #e5e7eb; border-radius: 8px; margin-bottom: 1rem; }
+        .tracking-button { width: 100%; padding: 1rem; font-size: 1.1rem; background: #3b82f6; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .content-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .feature-card { text-align: center; padding: 2rem; background: #ffffff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .feature-icon { font-size: 3rem; margin-bottom: 1rem; color: #3b82f6;}
+        .nav-links { text-align: center; padding: 2rem; }
+        .nav-links a { margin: 0 1rem; color: #3b82f6; text-decoration: none; font-weight: 600; }
+        footer { background: #1a202c; color: white; text-align: center; padding: 3rem 2rem; margin-top: 3rem; }
+        @media (max-width: 768px) { .hero h1 { font-size: 1.8rem; } }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="logo">🌐</div>
+        <h1>Premier Stace Group</h1>
+        <p> Global Asset Tracking</p>
+        <p style="font-size: 1rem;">📞 +1 (555) 847-2931 | 📧 support@premierstacegroup.com</p>
+    </header>
+
+    <div class="tracking-section">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Track Your Shipment</h2>
+        <form action="/track" method="post">
+            <input type="text" name="shipment_id" class="tracking-input" placeholder="Enter Shipment ID (e.g., LUX-CA-NJ-001)" required>
+            <button type="submit" class="tracking-button">Track Shipment</button>
+        </form>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="features">
+            <div class="feature-card"><div class="feature-icon">🔒</div><h3>Secure Tracking</h3><p>Bank-level encryption protects your shipment data.</p></div>
+            <div class="feature-card"><div class="feature-icon">🌍</div><h3>Global Coverage</h3><p>Track shipments in 150+ countries worldwide.</p></div>
+            <div class="feature-card"><div class="feature-icon">⚡</div><h3>Real-Time Updates</h3><p>Live GPS tracking with instant notifications.</p></div>
+            <div class="feature-card"><div class="feature-icon">🤝</div><h3>24/7 Support</h3><p>Expert assistance whenever you need it.</p></div>
+        </div>
+    </div>
+
+    <div class="nav-links">
+        <a href="/about">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Services</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Premier Stace Group. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
